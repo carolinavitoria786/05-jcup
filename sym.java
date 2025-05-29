@@ -11,6 +11,7 @@ public class sym {
   public static final int INTEIRO = 2;
   public static final int MENOSUNARIO = 5;
   public static final int MENOS = 4;
+  public static final int MULT = 9;
   public static final int EOF = 0;
   public static final int PARENTESQ = 7;
   public static final int error = 1;
@@ -24,7 +25,8 @@ public class sym {
   "MENOSUNARIO",
   "PTVIRG",
   "PARENTESQ",
-  "PARENTDIR"
+  "PARENTDIR",
+  "MULT"
   };
 }
 

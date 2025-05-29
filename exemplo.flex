@@ -26,6 +26,7 @@ inteiro = {digito}+
             return new Symbol(sym.INTEIRO, yyline, yycolumn, numero);
           }
 "+"       { return new Symbol(sym.MAIS); }
+"*"       { return new Symbol(sym.MULT); }
 "-"       { return new Symbol(sym.MENOS); }
 "("       { return new Symbol(sym.PARENTESQ); }
 ")"       { return new Symbol(sym.PARENTDIR); }
