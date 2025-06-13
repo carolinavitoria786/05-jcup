@@ -1,13 +1,13 @@
 import java_cup.runtime.*;
 
 terminal Integer INTEIRO;
-terminal MAIS, MENOS, MENOSUNARIO, PTVIRG, PARENTESQ, PARENTDIR, MULT;
+terminal MAIS, MENOS, MENOSUNARIO, PTVIRG, PARENTESQ, PARENTDIR, MULT, DIV, POTEN, REST;
 
 non terminal inicio;
 non terminal Integer expr;
 
 precedence left MAIS, MENOS, MULT;
-precedence right MENOSUNARIO; // Menos unário com maior precedência, associatividade à direita.
+precedence right MENOSUNARIO, DIV, POTEN, REST; // Menos unário com maior precedência, associatividade à direita.
 
 start with inicio;
 
@@ -16,9 +16,12 @@ inicio ::= expr:e PTVIRG {: System.out.println(e); :}
 
 expr ::= expr:a MAIS expr:b         {: RESULT = a.intValue() + b.intValue(); :}
        | expr:a MENOS expr:b        {: RESULT = a.intValue() - b.intValue(); :}
-       | expr:a MULT expr:b        {: RESULT = a.intValue() * b.intValue(); :}
+       | expr:a MULT expr:b         {: RESULT = a.intValue() * b.intValue(); :}
        | MENOS expr:a               {: RESULT = -a; :} %prec MENOSUNARIO       
        | PARENTESQ expr:a PARENTDIR {: RESULT = a.intValue(); :}
+       | expr:a DIV expr:b          {: RESULT = a.intValue() / b.intValue(); :}
+       | expr:a POTEN expr:b        {: RESULT = (int) Math.pow(a.intValue(), b.intValue()); :}
+       | expr:a REST expr:b         {: RESULT = a.intValue() % b.intValue(); :}
        | INTEIRO:a                  {: RESULT = a.intValue(); :}
        ;
 
